@@ -1,0 +1,16 @@
+- unless @auctions.present?
+  p= t('no_results')
+table
+  - @auctions.each do |auction|
+    thead
+      tr
+        th= ID
+        th= t('auctions.name')
+        th= t('auctions.seller')
+        th= t('auctions.created_at')
+    tbody
+      tr
+        td= auction.id
+        td= auction.name
+        td= auction.seller
+        td= auction.created_at
