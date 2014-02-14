@@ -1,18 +1,18 @@
 - unless @auctions.present?
   .alert.alert-info
     = t('no_results')
-table
+table.table.table-bordered
+  thead
+    tr
+      th ID
+      th= t('auctions.name')
+      th= t('auctions.seller')
+      th= t('auctions.created_at')
   - @auctions.each do |auction|
-    thead
-      tr
-        th= ID
-        th= t('auctions.name')
-        th= t('auctions.seller')
-        th= t('auctions.created_at')
     tbody
       tr
         td= auction.id
         td
-          = link_to auction.name, auction_path(auction)
-        td= auction.seller
+          = link_to auction.item.name, auction_path(auction)
+        td= auction.seller.full_name
         td= auction.created_at

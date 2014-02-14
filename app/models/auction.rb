@@ -22,16 +22,17 @@ class Auction < ActiveRecord::Base
 
   private
 
-    def end_date_period
-      errors.add(:end_date, :end_date_in_future) if end_date.present? && end_date < DateTime.current
-    end
+  def end_date_period
+    errors.add(:end_date, :end_date_in_future) if end_date.present? &&
+                                                  end_date < DateTime.current
+  end
 
-    def buyer_and_seller_are_different
-      errors.add(:seller, :seller_different_winner) if seller == winner
-    end
+  def buyer_and_seller_are_different
+    errors.add(:seller, :seller_different_winner) if seller == winner
+  end
 
-    def default_attributes
-      self.status ||= :started
-    end
+  def default_attributes
+    self.status ||= :started
+  end
 
 end

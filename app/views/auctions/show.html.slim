@@ -1,0 +1,19 @@
+legend
+  = @auction.item.name
+dl.dl-horizontal
+  dt= t('auction.seller')
+  dd= @auction.price
+  dt= t('auction.end_date')
+  dd= @auction.end_date
+  dt= t('auction.last_bid')
+  dd= AuctionBids.new(@auction).last_bid
+- if current_user != @auction.seller
+  .form-actions
+    .span4.offset1
+      = form_for Bid.new, url: auction_bids_path(@auction), html: { class: "form-inline" } do |f|
+        .input-prepend
+          span.add-on $
+          = f.number_field :amount, class: "input-small", min: 0
+        = f.submit nil, class: "btn btn-primary btn-small"
+    = link_to t('auctions.buy_now'), buy_now_auction_path(@auction), :"data-method" => "POST",
+                                                                     class: "btn btn-primary"

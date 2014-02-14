@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates :name, presence: true
+  # validates :first_name, :last_name, presence: true
 
   def full_name
     "#{first_name} #{last_name}"
