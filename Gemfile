@@ -66,6 +66,8 @@ gem 'resque-scheduler', :require => 'resque_scheduler'
 
 gem 'pundit'
 
+gem "slim-rails"
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
