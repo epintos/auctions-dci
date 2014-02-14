@@ -1,11 +1,6 @@
-Rails Bootstrap
+Auctions DCI
 ===============
 
-Setup for Rails Applications
+Rails example app applying Data Context Interaction (DCI) paradigm.
 
-##Instructions
-
-1. Download this repository
-2. Run the following script with your new application name in `snake_case` and from the application root folder:
- `./script/bootstrap app_name`
-3. Your app is ready
+Idea based on [http://dci-in-ruby.info/](http://dci-in-ruby.info/)
