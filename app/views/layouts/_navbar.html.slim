@@ -5,21 +5,16 @@
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.brand href="#"
-        = t('auctions.title')
+      = link_to t('auctions.title'), auctions_path, class: "brand"
       .nav-collapse.collapse.navbar-inverse-collapse
         ul.nav
           li.active
-            a href="#"
-              = t('auctions.title')
+            = link_to t('auctions.title'), auctions_path
           li
-            a href="#"
-              = t('sell')
+            = link_to t('sell'), new_auction_path
         ul.nav.pull-right
           li
             - if user_signed_in?
               = link_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete
             - else
               = link_to t('devise.sessions.sign_in'), new_user_session_path
-      /! /.nav-collapse
-  /! /navbar-inner

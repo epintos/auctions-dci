@@ -1,0 +1,12 @@
+en:
+  activerecord:
+    models:
+      auction:
+    errors:
+      models:
+        auction:
+          attributes:
+            end_date:
+              end_date_in_future: Date must be in the future
+            seller:
+              seller_different_winner: Seller must be differente than the winner

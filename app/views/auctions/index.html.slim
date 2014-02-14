@@ -1,5 +1,6 @@
 - unless @auctions.present?
-  p= t('no_results')
+  .alert.alert-info
+    = t('no_results')
 table
   - @auctions.each do |auction|
     thead
@@ -11,6 +12,7 @@ table
     tbody
       tr
         td= auction.id
-        td= auction.name
+        td
+          = link_to auction.name, auction_path(auction)
         td= auction.seller
         td= auction.created_at

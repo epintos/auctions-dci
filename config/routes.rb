@@ -1,7 +1,12 @@
 AuctionsDci::Application.routes.draw do
+
   devise_for :users
 
   root to: "auctions#index"
 
-  resources :auctions
+  resources :auctions do
+    resources :items
+    resources :bids
+  end
+
 end

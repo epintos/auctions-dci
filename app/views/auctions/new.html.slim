@@ -1,0 +1,35 @@
+legend
+  = t('auctions.sell_item')
+- if @auction.errors.present?
+  .alert.alert-error
+    ul
+      - @auction.errors.full_messages.each do |error|
+        li= error
+= form_for @auction, html: { class: "form-horizontal" } do |f|
+  - f.fields_for :item do |i|
+    .control-group
+      = i.label :name, class: "control-label"
+      .controls
+        = i.text_field :name
+    .control-group
+      = i.label :description, class: "control-label"
+      .controls
+        = i.text_field :description
+    .control-group
+      = f.label :price, class: "control-label"
+      .controls
+        .input-prepend
+          span.add-on $
+          = f.number_field :price, class: "span2", min: 0
+    .control-group
+      = f.label :end_date, class: "control-label"
+      .controls
+        = f.text_field :end_date
+    .control-group
+      .controls
+        label.checkbox
+          = f.check_box :extendable
+          = f.label :extendable
+    .control-group
+      .controls
+        = f.submit nil, class: "btn btn-primary"
