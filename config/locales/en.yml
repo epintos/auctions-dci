@@ -4,6 +4,10 @@ en:
     end_date: End date
     price: Price
     extendable: Extendable
+    bought_successfully: "Successful bought!"
   items:
     name: Name
     description: Description
+  bids:
+    title: Bid
+    new: Bid!

@@ -6,10 +6,6 @@ legend
     .alert.alert-error
       = devise_error_messages!
   .control-group
-    = f.label :email, class: "control-label"
-    .controls
-      = f.email_field :email, autofocus: true, required: true
-  .control-group
     = f.label :first_name, class: "control-label"
     .controls
       = f.text_field :first_name, required: true
@@ -17,6 +13,10 @@ legend
     = f.label :last_name, class: "control-label"
     .controls
       = f.text_field :last_name, required: true
+  .control-group
+    = f.label :email, class: "control-label"
+    .controls
+      = f.email_field :email, autofocus: true, required: true
   .control-group
     = f.label :password, class: "control-label"
     .controls

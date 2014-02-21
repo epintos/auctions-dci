@@ -4,17 +4,26 @@ class BidsController < InheritedResources::Base
 
   FIELDS = [:amount, :auction_id]
 
-  def create
-    binding.pry
-    @bid = BidCreationContext.new(current_user).handle(resource_params.first)
-    create! do |success, failure|
-      failure.html { redirect_to aution_path(resource_params.first) }
-    end
+  def new
+    fetch_auction
+    @bid = Bid.new
   end
+
+  def create
+    fetch_auction
+    @bid = BidCreationContext.new(current_user, @auction).handle(resource_params.first)
+    create!
+  end
+
+  private
 
   def resource_params
     return [] if request.get?
     [params.require(:bid).permit(FIELDS)]
+  end
+
+  def fetch_auction
+    @auction = Auction.find(params[:auction_id])
   end
 
 end

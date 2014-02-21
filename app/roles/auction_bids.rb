@@ -5,7 +5,7 @@ class AuctionBids < SimpleDelegator
   end
 
   def last_bid
-    bids.order("created_at ASC").last
+    bids.order("amount ASC").last
   end
 
 end

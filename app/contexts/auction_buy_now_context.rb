@@ -1,14 +1,14 @@
 class AuctionBuyNowContext
 
-  def initialize(current_user)
+  def initialize(current_user, auction)
     @current_user = current_user
+    @auction = auction
   end
 
-  def handle(auction_id)
-    auction = Auction.find(auction_id)
-    auction.winner = @current_user
-    auction.state = AuctionStateManager.new(auction).finished_status
-    auction.save!
+  def handle
+    @auction.winner = @current_user
+    @auction.status = AuctionStateManager.new(@auction).finished_status
+    @auction.save!
   end
 
 end

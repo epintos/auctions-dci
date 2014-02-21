@@ -10,3 +10,7 @@ en:
               end_date_in_future: Date must be in the future
             seller:
               seller_different_winner: Seller must be differente than the winner
+        bid:
+          attributes:
+            amount:
+              lower_bid: Bid must be bigger from last bid submitted

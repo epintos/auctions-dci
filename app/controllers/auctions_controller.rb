@@ -15,8 +15,9 @@ class AuctionsController < InheritedResources::Base
   end
 
   def buy_now
-    AuctionBuyNowContext.new(current_user).handle(resource_params.first[:id])
-    redirect_to auction_path(@auction), flash: { notice: t('auction.bought_successfully')}
+    @auction = Auction.find(params[:id])
+    AuctionBuyNowContext.new(current_user, @auction).handle
+    redirect_to auction_path(@auction), flash: { notice: t('auctions.bought_successfully')}
   end
 
   def resource_params
