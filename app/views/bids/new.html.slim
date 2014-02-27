@@ -6,10 +6,12 @@ legend
       - @bid.errors.full_messages.each do |error|
         li= error
 dl.dl-horizontal
-  dt= t('auction.last_bid')
-  dd= "$ #{AuctionBids.new(@auction).last_bid.amount}"
+  - if AuctionBids.new(@auction).has_bids?
+    dt= t('auction.last_bid')
+    dd= "$ #{AuctionBids.new(@auction).last_bid.amount}"
 = form_for @bid, url: auction_bids_path(@auction, @bid), html: { class: "form-inline" } do |f|
   .span1.offset1
     = f.number_field :amount, class: "input-small", min: 0
+    br
     br
     = f.submit nil, class: "btn btn-primary btn-small"

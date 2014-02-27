@@ -12,4 +12,5 @@ AuctionsDci::Application.routes.draw do
     resources :bids
   end
 
+  resources :users
 end

@@ -1,15 +1,36 @@
 legend
   = @auction.item.name
 dl.dl-horizontal
-  dt= t('auction.price')
+  dt= t('auctions.price')
   dd= @auction.price
-  dt= t('auction.seller')
+  dt= t('auctions.seller')
   dd= @auction.seller.full_name
-  dt= t('auction.end_date')
+  dt= t('auctions.end_date')
   dd= @auction.end_date
-  dt= t('auction.last_bid')
-  dd= "$ #{AuctionBids.new(@auction).last_bid.amount}"
-- if current_user != @auction.seller
+  - if AuctionBids.new(@auction).has_bids?
+    dt= t('auctions.last_bid')
+    dd= "$ #{AuctionBids.new(@auction).last_bid.amount}"
+- if current_user == @auction.seller
+  - if AuctionBids.new(@auction).has_bids?
+    table.table.table-bordered
+      thead
+        tr
+          th ID
+          th= t('bids.bidder')
+          th= t('bids.amount')
+          th= t('bids.created_at')
+      - @auction.bids.each do |bid|
+        tbody
+          tr
+            td= bid.id
+            td
+              = bid.user.full_name
+            td= "$ #{bid.amount}"
+            td= bid.created_at
+  - else
+    .alert.alert-info
+      = t('bids.no_results')
+- if current_user != @auction.seller && !@auction.closed?
   .form-actions
     .span1
       = link_to t('bids.new'), new_auction_bid_path(@auction), class: "btn btn-primary"

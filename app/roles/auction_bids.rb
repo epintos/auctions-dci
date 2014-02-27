@@ -8,4 +8,8 @@ class AuctionBids < SimpleDelegator
     bids.order("amount ASC").last
   end
 
+  def has_bids?
+    bids.present?
+  end
+
 end

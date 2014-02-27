@@ -5,7 +5,7 @@ class AuctionStateManager < SimpleDelegator
   end
 
   def finished_status
-    self.status = :closed
+    :closed
   end
 
 end

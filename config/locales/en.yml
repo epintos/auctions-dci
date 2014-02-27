@@ -2,12 +2,21 @@ en:
   auctions:
     title: Auctions
     end_date: End date
-    price: Price
+    price: Buy it now Price
     extendable: Extendable
     bought_successfully: "Successful bought!"
+    buyer_amount_smaller: "Amount must be bigger than the last bid"
   items:
     name: Name
     description: Description
   bids:
     title: Bid
     new: Bid!
+    bidder: Bidder
+    amount: Amount
+    no_results: No bids yet
+  users:
+    profile: Profile
+    full_name: Full Name
+    account: Account
+

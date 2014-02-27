@@ -12,7 +12,9 @@ class Bid < ActiveRecord::Base
   private
 
   def bigger_amount
-    errors.add(:amount, :lower_bid) if AuctionBids.new(auction).last_bid.amount >= amount
+    last_bid = AuctionBids.new(auction).last_bid
+    errors.add(:amount, :lower_bid) if last_bid.present? && amount.present? &&
+                                        AuctionBids.new(auction).last_bid.amount >= amount
   end
 
 end

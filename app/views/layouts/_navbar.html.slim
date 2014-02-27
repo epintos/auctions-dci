@@ -13,8 +13,11 @@
           li
             = link_to t('sell'), new_auction_path
         ul.nav.pull-right
-          li
-            - if user_signed_in?
+          - if user_signed_in?
+            li
+              = link_to t('users.profile'), current_user
+            li
               = link_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete
-            - else
+          - else
+            li
               = link_to t('devise.sessions.sign_in'), new_user_session_path

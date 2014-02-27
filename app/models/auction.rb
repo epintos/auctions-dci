@@ -20,6 +20,20 @@ class Auction < ActiveRecord::Base
 
   after_initialize :default_attributes
 
+  class << self
+
+    def in_status(*status)
+      status.each do |type|
+        define_method("#{type}?") do
+          self.status == type.to_s
+        end
+      end
+    end
+
+  end
+
+  in_status :started, :closed, :cancelled
+
   private
 
   def end_date_period
