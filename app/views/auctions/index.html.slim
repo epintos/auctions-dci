@@ -1,19 +1,7 @@
+legend
+  = t('auctions.title')
 - if !@auctions.present?
   .alert.alert-info
     = t('no_results')
 - else
-  table.table.table-bordered
-    thead
-      tr
-        th ID
-        th= t('auctions.name')
-        th= t('auctions.seller')
-        th= t('auctions.created_at')
-    - @auctions.each do |auction|
-      tbody
-        tr
-          td= auction.id
-          td
-            = link_to auction.item.name, auction_path(auction)
-          td= auction.seller.full_name
-          td= auction.created_at
+  = render "auctions_table", auctions: @auctions

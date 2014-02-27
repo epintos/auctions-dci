@@ -16,7 +16,10 @@ class AuctionsController < InheritedResources::Base
 
   def buy_now
     @auction = Auction.find(params[:id])
-    AuctionBuyNowContext.new(current_user, @auction).handle
+    status = AuctionBuyNowContext.new(current_user, @auction).handle
+    unless status
+      return redirect_to auction_path(@auction), flash: { notice: t('auctions.no_enough_account')}
+    end
     redirect_to auction_path(@auction), flash: { notice: t('auctions.bought_successfully')}
   end
 

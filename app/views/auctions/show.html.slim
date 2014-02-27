@@ -11,6 +11,8 @@ dl.dl-horizontal
     dt= t('auctions.last_bid')
     dd= "$ #{AuctionBids.new(@auction).last_bid.amount}"
 - if current_user == @auction.seller
+  legend
+    = t('bids.title')
   - if AuctionBids.new(@auction).has_bids?
     table.table.table-bordered
       thead
@@ -30,10 +32,25 @@ dl.dl-horizontal
   - else
     .alert.alert-info
       = t('bids.no_results')
-- if current_user != @auction.seller && !@auction.closed?
-  .form-actions
-    .span1
-      = link_to t('bids.new'), new_auction_bid_path(@auction), class: "btn btn-primary"
-    .span2
-      = link_to t('auctions.buy_now'), buy_now_auction_path(@auction), :"data-method" => "POST",
+- if current_user != @auction.seller
+  - if @auction.started?
+    .form-actions
+      .span1
+        = link_to t('bids.new'), new_auction_bid_path(@auction), class: "btn btn-primary"
+      .span2
+        = link_to t('auctions.buy_now'), buy_now_auction_path(@auction), :"data-method" => "POST",
                                                                      class: "btn btn-primary"
+  - if @auction.closed?
+    legend
+      = t('auctions.winner')
+    table.table.table-bordered
+      thead
+        tr
+          th ID
+          th= t('bids.bidder')
+        tbody
+          tr
+            td= @auction.winner.id
+            td
+              = @auction.winner.full_name
+

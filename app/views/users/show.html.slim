@@ -6,4 +6,11 @@ dl.dl-horizontal
   dt= t('users.email')
   dd= @user.email
   dt= t('users.account')
-  / dd= @user.account
+  dd= "$ #{@user.account}"
+legend
+  = t('auctions.title')
+- if @user.auctions.present?
+  = render "auctions/auctions_table", auctions: @user.auctions
+- else
+  .alert.alert-info
+    = t('auctions.no_results')

@@ -1,0 +1,17 @@
+table.table.table-bordered
+    thead
+      tr
+        th ID
+        th= t('auctions.name')
+        th= t('auctions.seller')
+        th= t('auctions.created_at')
+        th= t('auctions.end_date')
+    - auctions.each do |auction|
+      tbody
+        tr
+          td= auction.id
+          td
+            = link_to auction.item.name, auction_path(auction)
+          td= auction.seller.full_name
+          td= auction.created_at
+          td= auction.end_date

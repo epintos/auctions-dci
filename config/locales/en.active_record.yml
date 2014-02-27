@@ -14,3 +14,5 @@ en:
           attributes:
             amount:
               lower_bid: Bid must be bigger from last bid submitted
+              lower_bid_buy_it_now_price: Bid must be smaller or equal than the buy it now price
+              no_enough_account: You don't have enought money in your account
